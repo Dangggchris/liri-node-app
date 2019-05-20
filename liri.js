@@ -1,6 +1,5 @@
 require("dotenv").config();
 var keys = require("./keys.js");
-var fs = require("fs");
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var moment = require("moment");
@@ -8,7 +7,6 @@ var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 
 var action = process.argv[2]; 
-var input = ""
 
 if (action === 'concert-this') {
     var argv = process.argv[3];
@@ -19,16 +17,20 @@ else if (action === 'spotify-this-song') {
     songInfo(argv);   
 }
 else if (action === 'movie-this') {
-    movie(argv);    
+    var argv = process.argv[3];
+    movie(argv); 
+    
+       
 }
 else if (action === 'do-what-it-says') {
-    var argv = process.argv;
-    whatever(argv);
+    whatever();
 }
+
 
 // Functions for modularization
 function concert(argv) {
     
+    console.log(argv);
     var bandURL = "https://rest.bandsintown.com/artists/" + argv + "/events?app_id=codingbootcamp";
     console.log(bandURL);
 
@@ -76,14 +78,7 @@ function songInfo(argv) {
 }
 
 function movie(argv) { 
-    var movieName = "";
-
-    for (var i = 3; i < argv.length; i++) {
-
-        if (i > 2 && i < argv.length) {
-          movieName = movieName + "+" + argv[i];
-        }
-    }
+    var movieName = argv;
 
     var movieURL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=40d78a3d";
 
@@ -119,6 +114,8 @@ function movie(argv) {
 
 function whatever() {
 
+  var fs = require("fs");
+
     fs.readFile("random.txt", "utf8", function(error, data) {
 
         if (error) {
@@ -133,8 +130,8 @@ function whatever() {
         console.log(dataArr);
 
         if (action === 'concert-this') {
-            var argv = dataArr[1];
-
+            var string = dataArr[1];
+            var argv = string.substring(1, string.length-1);
             console.log(argv);
             
             concert(argv);
@@ -144,8 +141,8 @@ function whatever() {
             songInfo(argv);   
         }
         else if (action === 'movie-this') {
-            var argv = ["node", "liri", "action", dataArr[1]]
-
+        
+            var argv = dataArr[1];
             movie(argv);    
         }
       
