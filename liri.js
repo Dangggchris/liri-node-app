@@ -8,7 +8,6 @@ var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 
 var action = process.argv[2]; 
-var input = ""
 
 if (action === 'concert-this') {
     var argv = process.argv[3];
