@@ -8,6 +8,7 @@ var spotify = new Spotify(keys.spotify);
 
 var action = process.argv[2]; 
 
+// conditional statements
 if (action === 'concert-this') {
     var argv = process.argv[3];
     concert(argv);
@@ -17,17 +18,24 @@ else if (action === 'spotify-this-song') {
     songInfo(argv);   
 }
 else if (action === 'movie-this') {
-    var argv = process.argv[3];
-    movie(argv); 
+
+    // Default to Mr Nobody if there is no process.argv[3]
+    if (process.argv[3]) {
+      var argv = process.argv[3];
+      movie(argv);
+    }
+    else {
+      var argv = "Mr Nobody";
+      movie(argv); 
+    }
     
-       
 }
 else if (action === 'do-what-it-says') {
     whatever();
 }
 
 
-// Functions for modularization
+// Functions
 function concert(argv) {
     
     console.log(argv);
@@ -46,16 +54,7 @@ function concert(argv) {
     
   })
   .catch(function(error) {
-    if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) {
-      console.log(error.request);
-    } else {
-      console.log("Error", error.message);
-    }
-    console.log(error.config);
+    console.log(error);
   });
 }
 
@@ -99,16 +98,7 @@ function movie(argv) {
       
     })
     .catch(function(error) {
-      if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
+      console.log(error);
     });
 }
 
