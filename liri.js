@@ -8,6 +8,7 @@ var moment = require("moment");
 var spotify = new Spotify(keys.spotify);
 
 var action = process.argv[2]; 
+var input = ""
 
 if (action === 'concert-this') {
     var argv = process.argv[3];
@@ -18,11 +19,11 @@ else if (action === 'spotify-this-song') {
     songInfo(argv);   
 }
 else if (action === 'movie-this') {
-    var argv = process.argv;
     movie(argv);    
 }
 else if (action === 'do-what-it-says') {
-    whatever();
+    var argv = process.argv;
+    whatever(argv);
 }
 
 // Functions for modularization
@@ -75,7 +76,6 @@ function songInfo(argv) {
 }
 
 function movie(argv) { 
-    
     var movieName = "";
 
     for (var i = 3; i < argv.length; i++) {
@@ -145,6 +145,7 @@ function whatever() {
         }
         else if (action === 'movie-this') {
             var argv = ["node", "liri", "action", dataArr[1]]
+
             movie(argv);    
         }
       
