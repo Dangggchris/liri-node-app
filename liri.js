@@ -40,9 +40,7 @@ else if (action === 'do-what-it-says') {
 // Functions
 function concert(argv) {
     
-    console.log(argv);
     var bandURL = "https://rest.bandsintown.com/artists/" + argv + "/events?app_id=codingbootcamp";
-    console.log(bandURL);
 
     axios
   .get(bandURL)
@@ -88,7 +86,6 @@ function songInfo(argv) {
       console.log("The trackname is: " + response.name);
       console.log("The preview link is: " + response.external_urls.spotify);
       console.log("The album is: " + response.album.name);
-      console.log(argv)
 
       var artistEntry = ("\nUser Entry: " + argv)
       var artistName = ("\nThe Artist is: " + response.artists[0].name); 
@@ -165,14 +162,10 @@ function whatever() {
         var dataArr = data.split(",");
         
         var action = dataArr[0];
-        
-
-        console.log(dataArr);
 
         if (action === 'concert-this') {
             var string = dataArr[1];
             var argv = string.substring(1, string.length-1);
-            console.log(argv);
             
             concert(argv);
         }
