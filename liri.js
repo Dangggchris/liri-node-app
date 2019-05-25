@@ -1,12 +1,14 @@
 require("dotenv").config();
+var fs = require("fs");
 var keys = require("./keys.js");
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var moment = require("moment");
-
 var spotify = new Spotify(keys.spotify);
 
 var action = process.argv[2]; 
+
+var linebreak = ("\n---------------------------------------------------");
 
 // conditional statements
 if (action === 'concert-this') {
@@ -51,7 +53,21 @@ function concert(argv) {
     console.log("The venue will be " + response.data[0].venue.name + ".");
     console.log("The location of the venue will be " + response.data[0].venue.city + ", " + response.data[0].venue.region + " " + response.data[0].venue.country + ".");
     console.log("Concert Date: " + convertDate.format("MM/DD/YYYY"));
-    
+
+    var concertEntry = ("\nUser Entry: " + argv)
+    var concertVenue = ("\nThe venue will be " + response.data[0].venue.name + ".");
+    var concertLoc = ("\nThe location of the venue will be " + response.data[0].venue.city + ", " + response.data[0].venue.region + " " + response.data[0].venue.country + ".");
+    var concertTime = ("\nConcert Date: " + convertDate.format("MM/DD/YYYY"));
+
+    fs.appendFile("log.txt", (linebreak + concertEntry + concertVenue + concertLoc + concertTime), function(err) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log("Content Added to Log!");
+      }
+    });
+
   })
   .catch(function(error) {
     console.log(error);
@@ -72,7 +88,22 @@ function songInfo(argv) {
       console.log("The trackname is: " + response.name);
       console.log("The preview link is: " + response.external_urls.spotify);
       console.log("The album is: " + response.album.name);
+      console.log(argv)
 
+      var artistEntry = ("\nUser Entry: " + argv)
+      var artistName = ("\nThe Artist is: " + response.artists[0].name); 
+      var artistTrack = ("\nThe trackname is: " + response.name);
+      var artistLink = ("\nThe preview link is: " + response.external_urls.spotify);
+      var artistAlbum = ("\nThe album is: " + response.album.name);
+
+        fs.appendFile("log.txt", (linebreak + artistEntry + artistName + artistTrack + artistLink + artistAlbum), function(err) {
+          if (err) {
+            console.log(err);
+          }
+          else {
+            console.log("Content Added to Log!");
+          }
+        });
       });
 }
 
@@ -84,7 +115,7 @@ function movie(argv) {
     axios
     .get(movieURL)
     .then(function(response) {
-
+        
         var results = response.data
 
         console.log("Title: " + results.Title);
@@ -95,7 +126,26 @@ function movie(argv) {
         console.log("Language: " + results.Language);
         console.log("Plot: " + results.Plot);
         console.log("Actors: " + results.Actors);
-      
+
+        var movieEntry = ("\nUser Entry: " + movieName);
+        var movieTitle = ("\nTitle: " + results.Title);
+        var movieRelease = ("\nYear: " + results.Year);
+        var movieIMDB = ("\nIMDB Rating: " + results.Ratings[0].Value);
+        var movieRT = ("\nRotten Tomatoes Rating: " + results.Ratings[1].Value);
+        var movieCountry = ("\nCountry: " + results.Country);
+        var movieLang = ("\nLanguage: " + results.Language);
+        var moviePlot = ("\nPlot: " + results.Plot);
+        var movieActors = ("\nActors: " + results.Actors);
+
+          fs.appendFile("log.txt", (linebreak + movieEntry + movieTitle + movieRelease + movieIMDB + movieRT + movieCountry + movieLang + moviePlot + movieActors), function(err) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              console.log("Content Added to Log!");
+            }
+          });
+
     })
     .catch(function(error) {
       console.log(error);
