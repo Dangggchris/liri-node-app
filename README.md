@@ -14,6 +14,10 @@ Commands will be:
 An example of each command:
 
 - node liri.js concert-this <"name of artist">
+    
+
 - node liri.js spotifiy-this-song <"name of song">
 - node liri.js movie-this <"name of movie">
 - node liri.js do-what-it-says
+
+
