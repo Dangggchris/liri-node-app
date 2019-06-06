@@ -11,7 +11,7 @@ Commands will be:
 - movie-this
 - do-what-it-says
 
-An example of each command:
+An example of each command and expected outputs:
 
 - node liri.js concert-this <"name of artist">
 
