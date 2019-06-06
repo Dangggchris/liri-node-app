@@ -14,10 +14,19 @@ Commands will be:
 An example of each command:
 
 - node liri.js concert-this <"name of artist">
-    
+
+![Image of Concert this](https://dangggchris.github.io/liri-node-app/images/concerthis.png)
 
 - node liri.js spotifiy-this-song <"name of song">
+
+![Image of Concert this](https://dangggchris.github.io/liri-node-app/images/spotifythis.png)
+
 - node liri.js movie-this <"name of movie">
+
+![Image of Concert this](https://dangggchris.github.io/liri-node-app/images/moviethis.png)
+
 - node liri.js do-what-it-says
+
+![Image of Concert this](https://dangggchris.github.io/liri-node-app/images/dothis.png)
 
 

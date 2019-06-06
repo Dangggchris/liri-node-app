@@ -35,3 +35,14 @@ Country: New Zealand, USA
 Language: English, Sindarin
 Plot: A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.
 Actors: Alan Howard, Noel Appleby, Sean Astin, Sala Baker
+---------------------------------------------------
+User Entry: jai wolf
+The venue will be Splash House.
+The location of the venue will be Palm Springs, CA United States.
+Concert Date: 06/07/2019
+---------------------------------------------------
+User Entry: all the small things
+The Artist is: blink-182
+The trackname is: All The Small Things
+The preview link is: https://open.spotify.com/track/2m1hi0nfMR9vdGC8UcrnwU
+The album is: Enema Of The State
